@@ -25,6 +25,7 @@ SECRET_KEY = "django-insecure-3)u73dd@dmkm@1cn)c@l#7s@y16kpe9^*z&-*h%wmupm!*$xw#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ["https://www.necktie.com.hk"], Browser call us directly, so we can not limit any hosts
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "jobs",
 ]
 
 MIDDLEWARE = [
@@ -121,3 +124,11 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
+    ]
+}
