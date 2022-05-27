@@ -12,11 +12,26 @@ class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
 
+    def get_permissions(self):
+        if self.action == "create":
+            permissions = []
+        else:
+            permissions = super().get_permissions()
+        return permissions
+
     @staticmethod
     def get_serialized_data(params, mandatory_filter=None):
         doctor_queryset = Utils.params_2_queryset(Doctor, params, mandatory_filter=mandatory_filter)
         serializer = DoctorSerializer(doctor_queryset, many=True, context=params)
         return serializer.data
+
+    @staticmethod
+    def create_doctor(data):
+        many = isinstance(data, list)
+        serializer = DoctorCreateSerializer(data=data, many=many)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return serializer.data
 
     @method_decorator(response)
     def list(self, request):
@@ -106,12 +121,80 @@ class DoctorViewSet(viewsets.ModelViewSet):
         return data[0] if data else {}
 
     @method_decorator(response)
+    def create(self, request, *args, **kwargs):
+        """
+        @apiVersion 1.0.0
+        @api {POST} /doctor/
+        @apiName CreateDoctor
+        @apiGroup Jobs
+        @apiPermission None
+        @apiParam {Number} None
+        @apiParamExample {json} Request-Example:
+        http://127.0.0.1:8000/doctor
+        {
+            "doctor_translations": [
+                {
+                    "language_code": "EN",
+                    "name": "new name 1",
+                    "note": "new note 1"
+                },
+                {
+                    "language_code": "HK",
+                    "name": "new name HK 1",
+                    "note": "new note HK 1"
+                }
+            ],
+            "location": {
+                "district": "TP",
+                "latitude": "111.1669429",
+                "longitude": "111.1669420",
+                "name": "new loc 1"
+            },
+            "phone": "0905360911",
+            "category": "D",
+            "price": "123.11",
+            "available_time": "available 1"
+        }
+        @apiSuccessExample {json} Success-Response
+        {
+            "id": 15,
+            "doctor_translations": [
+                {
+                    "id": 23,
+                    "language_code": "HK",
+                    "name": "new name HK 1",
+                    "note": "new note HK 1"
+                },
+                {
+                    "id": 22,
+                    "language_code": "EN",
+                    "name": "new name 1",
+                    "note": "new note 1"
+                }
+            ],
+            "location": {
+                "id": 15,
+                "district": "TP",
+                "latitude": "111.1669429",
+                "longitude": "111.1669420",
+                "name": "new loc 1"
+            },
+            "phone": "0905360911",
+            "category": "D",
+            "price": "123.11",
+            "available_time": "available 1"
+        }
+        """
+        # NOTE can be used to bulk create also, consider preventing
+        return self.create_doctor(request.data)
+
+    @method_decorator(response)
     @action(detail=False, methods=["POST"], permission_classes=())
     def bulk_create(self, request):
         """
         @apiVersion 1.0.0
-        @api {GET} /doctor/bulk_create
-        @apiName BulkDoctor
+        @api {POST} /doctor/bulk_create
+        @apiName BulkCreateDoctor
         @apiGroup Jobs
         @apiPermission None
         @apiParam {Number} None
@@ -217,7 +300,5 @@ class DoctorViewSet(viewsets.ModelViewSet):
             }
         ]
         """
-        serializer = DoctorCreateSerializer(data=request.data, many=True)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return serializer.data
+        # NOTE can be used to single create also, consider preventing
+        return self.create_doctor(request.data)

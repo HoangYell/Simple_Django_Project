@@ -23,9 +23,9 @@ def response(f):
             data = f(*args, **kwargs)
             return Response(data, status=status.HTTP_200_OK)
         except ValidationError as e:
-            Response(dict(message=str(e)), status=status.HTTP_400_BAD_REQUEST)
+            return Response(dict(message=str(e)), status=status.HTTP_400_BAD_REQUEST)
         except:
             # TODO save this Exception to log, returns header response log_id
-            Response(dict(message="There is an issue processing your request."), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response(dict(message="There is an issue processing your request."), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     return wrapper

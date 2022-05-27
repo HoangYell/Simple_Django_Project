@@ -59,7 +59,7 @@ class Utils:
                 query_type = query_key.group(1)
                 priority = query_key.group(2)
                 field = query_key.group(3)
-                if field in model_fields:
+                if field.split("__")[0] in model_fields:
                     if sort_prefix == query_type:
                         sort_data[priority] = ("", "-")[value == "desc"] + field
                     elif filter_prefix == query_type:
@@ -71,3 +71,20 @@ class Utils:
         if sorts:
             queryset = queryset.order_by(*sorts)
         return queryset
+
+    @classmethod
+    def compare_list(cls, list_a, list_b):
+        """
+        compare 2 dict lists to check if it all the same
+        :param list_a: List a
+        :param list_b: List b
+
+        Example:
+            :argument:
+                list_a = [{"key_1": "val_1", {"key_2": "val_2"}]
+                list_a = [{"key_2": "val_2", {"key_1": "val_1"}]
+            :return:
+                True
+        """
+        pairs = zip(list_a, list_b)
+        return any(x != y for x, y in pairs)
