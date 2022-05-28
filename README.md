@@ -99,6 +99,7 @@ https://www.getpostman.com/collections/e735f5704363b0546881
 ---
 ### E.1. Get all doctors in any language:
 **URL:** http://127.0.0.1:8000/doctor/
+
 **cURL:**
 ```
 curl --location --request GET 'http://127.0.0.1:8000/doctor/'
@@ -144,6 +145,7 @@ _Usage:_
  - advanced filter: `filter_{priority}__{field_name}__{lte/le/gte/ge/icontains}={expected_value}`
 
 **URL:** http://127.0.0.1:8000/doctor/?filter_1__district=WTS&filter_2__category=D&filter_3__price__lte=200.02&filter_4__language_code=EN&sort_1__id=desc
+
 **cURL:**
 ```
 curl --location --request GET 'http://127.0.0.1:8000/doctor/?filter_1__district=WTS&filter_2__category=D&filter_3__price__lte=200.02&filter_4__language_code=EN&sort_1__id=desc'
@@ -200,6 +202,7 @@ curl --location --request GET 'http://127.0.0.1:8000/doctor/?filter_1__district=
 ---
 ### E.3. Get all doctor by ID & filter language:
 **URL:** http://127.0.0.1:8000/doctor/1/?filter_1__language_code=HK
+
 **cURL:**
 ```
 curl --location --request GET 'http://127.0.0.1:8000/doctor/1/?filter_1__language_code=HK'
@@ -238,6 +241,7 @@ curl --location --request GET 'http://127.0.0.1:8000/doctor/1/?filter_1__languag
 ---
 ### E.4. Create a single doctor with an existing location
 **URL:** http://127.0.0.1:8000/doctor/ or http://127.0.0.1:8000/doctor/bulk_create/
+
 **cURL:**
 ```
 curl --location --request POST 'http://127.0.0.1:8000/doctor/' \
@@ -298,6 +302,7 @@ curl --location --request POST 'http://127.0.0.1:8000/doctor/' \
 ---
 ### E.5. Bulk create doctors with the new location
 **URL:** http://127.0.0.1:8000/doctor/ or http://127.0.0.1:8000/doctor/bulk_create/
+
 **cURL:**
 ```
 curl --location --request POST 'http://127.0.0.1:8000/doctor/' \
