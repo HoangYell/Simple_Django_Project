@@ -217,12 +217,6 @@ curl --location --request GET 'http://127.0.0.1:8000/doctor/1/?filter_1__languag
             "language_code": "HK",
             "name": "new name HK 1",
             "note": "new note HK 1"
-        },
-        {
-            "id": 1,
-            "language_code": "EN",
-            "name": "new name 1",
-            "note": "new note 1"
         }
     ],
     "location": {
