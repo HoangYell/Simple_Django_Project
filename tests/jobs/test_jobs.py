@@ -30,7 +30,7 @@ class TestDoctor(BasePyTest):
         },
         {
             "doctor_translations": [{"language_code": "EN", "name": "new name 2", "note": "new note 2"}],
-            "location": {"id": 2, "district": "WTS", "latitude": "112.9429000", "longitude": "112.1942900", "name": "new loc 2"},
+            "location": {"district": "WTS", "latitude": "112.9429000", "longitude": "112.1942900", "name": "new loc 2"},
             "phone": "20244432322",
             "category": "K",
             "price": "32432.22",
@@ -58,6 +58,14 @@ class TestDoctor(BasePyTest):
 
     def test_single_create_success(self):
         response = self.client.post(self.DOCTOR_URL, json.dumps(self.SINGLE_DOCTOR_PAYLOAD), content_type="application/json")
+        self._validate_single_create_doctor_response(response)
+        return response.json()
+
+    def test_single_create_success_on_existing_location_id(self):
+        single_create_response = self.test_single_create_success()
+        single_doctor_payload_with_existing_location_id = deepcopy(self.SINGLE_DOCTOR_PAYLOAD)
+        single_doctor_payload_with_existing_location_id["location"] = {"id": single_create_response["location"]["id"]}
+        response = self.client.post(self.DOCTOR_URL, json.dumps(single_doctor_payload_with_existing_location_id), content_type="application/json")
         self._validate_single_create_doctor_response(response)
         return response.json()
 
