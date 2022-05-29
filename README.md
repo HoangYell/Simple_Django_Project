@@ -53,13 +53,14 @@ We can use this to run Pytest, check test coverage
 ***
 ## C. Setup TL;DR
 
-- `sh simple_setup.sh  `
+- _simple_setup.sh_
   - `git clone git@github.com:ngohoangyell/Hoang_Yell_Backend_Engineer_Technical_Assessment.git`
   - `cd Hoang_Yell_Backend_Engineer_Technical_Assessment`
   - `python3 -m venv hybeta_env`
   - `source hybeta_env/bin/activate`
 
   - `python3 -m pip install -r requirements.txt`
+    - or `python3 -m pip install -r how_to_setup/fallback_requirements.txt`
 
   - `pre-commit install`
   - `pre-commit run --all-files`
@@ -70,7 +71,7 @@ We can use this to run Pytest, check test coverage
 
   - `python manage.py runserver`
 
-- `sh create_example_data.sh  `
+- `sh how_to_setup/create_example_data.sh  `
 
 _that's it, all done!_ 🥳
 
