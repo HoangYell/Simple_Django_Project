@@ -12,7 +12,7 @@ pre-commit run --all-files
 # create database model
 python manage.py migrate
 # run pytest
-pytest-s
+pytest -s
 # start server
 python manage.py runserver
 
