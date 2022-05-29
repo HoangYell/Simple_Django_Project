@@ -66,7 +66,7 @@ We can use this to run Pytest, check test coverage
 
   - `python manage.py migrate`
 
-  - `pytest-s`
+  - `pytest -s`
 
   - `python manage.py runserver`
 
