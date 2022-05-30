@@ -201,7 +201,7 @@ curl --location --request GET 'http://127.0.0.1:8000/doctor/?filter_1__district=
 ]
 ```
 ---
-### E.3. Get all doctor by ID & filter language:
+### E.3. Get the doctor by ID & filter language:
 **URL:** http://127.0.0.1:8000/doctor/1/?filter_1__language_code=HK
 
 **cURL:**
