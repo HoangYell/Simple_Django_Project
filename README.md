@@ -1,4 +1,4 @@
-# Hoang_Yell_Backend_Engineer_Technical_Assessment
+# Simple_Django_Project
 
 _a Django boilerplate with Pre-commit, DRF serializer, Pytest, and Github action_
 
@@ -7,20 +7,8 @@ _a Django boilerplate with Pre-commit, DRF serializer, Pytest, and Github action
 </div>
 
 * * *
-## A. Implementation Processes, Pull Requests:
 
-1. Init Project: https://github.com/ngohoangyell/Hoang_Yell_Backend_Engineer_Technical_Assessment/pull/1
-
-2. Main Feature Code: https://github.com/ngohoangyell/Hoang_Yell_Backend_Engineer_Technical_Assessment/pull/2
-
-3. Fix Bug: https://github.com/ngohoangyell/Hoang_Yell_Backend_Engineer_Technical_Assessment/pull/3
-
-4. Unittest: https://github.com/ngohoangyell/Hoang_Yell_Backend_Engineer_Technical_Assessment/pull/4
-
-5. Document:  https://github.com/ngohoangyell/Hoang_Yell_Backend_Engineer_Technical_Assessment/pull/5
-
-***
-## B. Tech Stacks:
+## A. Tech Stacks:
 
 - [**Python:**](https://www.python.org/)
 No need to say more, Python is a trend and It will be good for any backend web project
@@ -51,11 +39,11 @@ Automate all workflows with built-in CI/CD. Build, test, and deploy code right f
 We can use this to run Pytest, check test coverage
 
 ***
-## C. Setup TL;DR
+## B. Setup TL;DR
 
 - _simple_setup.sh_
-  - `git clone git@github.com:ngohoangyell/Hoang_Yell_Backend_Engineer_Technical_Assessment.git`
-  - `cd Hoang_Yell_Backend_Engineer_Technical_Assessment`
+  - `git clone git@github.com:ngohoangyell/Simple_Django_Project.git`
+  - `cd Simple_Django_Project`
   - `python3 -m venv hybeta_env`
   - `source hybeta_env/bin/activate`
 
@@ -76,7 +64,7 @@ We can use this to run Pytest, check test coverage
 _that's it, all done!_ 🥳
 
 ***
-## D. Model
+## C. Model
 
 ![hybeta tables](https://user-images.githubusercontent.com/7069077/170811289-f3dceb01-85b8-47dc-b9d9-fd7051edecc7.png)
 - **Q&A 🤔🤷‍♀️🤷‍♂️**
@@ -91,14 +79,14 @@ _that's it, all done!_ 🥳
   - Why do you use Soft Delete(`is_deleted`, `deleted_at`)?
     - DB fees are very cheap nowadays, so we should prioritize solutions that are convenient for maintenance and troubleshooting.
 
-## E. API
+## D. API
 
 **Postman collections:**
 ```
 https://www.getpostman.com/collections/e735f5704363b0546881
 ```
 ---
-### E.1. Get all doctors in any language:
+### D.1. Get all doctors in any language:
 **URL:** http://127.0.0.1:8000/doctor/
 
 **cURL:**
@@ -139,7 +127,7 @@ curl --location --request GET 'http://127.0.0.1:8000/doctor/'
 ]
 ```
 ---
-### E.2. Get doctor by filter and sort:
+### D.2. Get doctor by filter and sort:
 _Usage:_
  - filter: `filter_{priority}__{field_name}={expected_value}`
  - sort: `sort_{priority}__{field_name}={asc/desc}`
@@ -201,7 +189,7 @@ curl --location --request GET 'http://127.0.0.1:8000/doctor/?filter_1__district=
 ]
 ```
 ---
-### E.3. Get the doctor by ID & filter language:
+### D.3. Get the doctor by ID & filter language:
 **URL:** http://127.0.0.1:8000/doctor/1/?filter_1__language_code=HK
 
 **cURL:**
@@ -234,7 +222,7 @@ curl --location --request GET 'http://127.0.0.1:8000/doctor/1/?filter_1__languag
 }
 ```
 ---
-### E.4. Create a single doctor with an existing location
+### D.4. Create a single doctor with an existing location
 **URL:** http://127.0.0.1:8000/doctor/ or http://127.0.0.1:8000/doctor/bulk_create/
 
 **cURL:**
@@ -295,7 +283,7 @@ curl --location --request POST 'http://127.0.0.1:8000/doctor/' \
 }
 ```
 ---
-### E.5. Bulk create doctors with the new location
+### D.5. Bulk create doctors with the new location
 **URL:** http://127.0.0.1:8000/doctor/ or http://127.0.0.1:8000/doctor/bulk_create/
 
 **cURL:**
@@ -405,22 +393,21 @@ curl --location --request POST 'http://127.0.0.1:8000/doctor/' \
 ```
 
 ***
-## F. Testing
+## E. Testing
 
-<img width="1625" alt="image" src="https://user-images.githubusercontent.com/7069077/170820151-1da15087-ecfb-463c-bf3d-4069fdc31cad.png">
-
-- Test folder: [tests](https://github.com/ngohoangyell/Hoang_Yell_Backend_Engineer_Technical_Assessment/tree/main/tests)
+- Test folder: [tests](https://github.com/ngohoangyell/Simple_Django_Project/tree/main/tests)
 
 - Command: `pytest -s` or `pytest -s tests/jobs` or `pytest --cov=hybeta tests/`
 
-- Test Database: `test_db.sqlite3`. You can update the settings in [test.py](https://github.com/ngohoangyell/Hoang_Yell_Backend_Engineer_Technical_Assessment/blob/main/hybeta/settings/test.py) and [pytest.ini](https://github.com/ngohoangyell/Hoang_Yell_Backend_Engineer_Technical_Assessment/blob/main/pytest.ini)
-
-![image](https://user-images.githubusercontent.com/7069077/170820578-241b896a-a29c-48f4-9001-366432eec3bf.png)
+- Test Database: `test_db.sqlite3`. You can update the settings in [test.py](https://github.com/ngohoangyell/Simple_Django_Project/blob/main/hybeta/settings/test.py) and [pytest.ini](https://github.com/ngohoangyell/Simple_Django_Project/blob/main/pytest.ini)
 
 ***
-## G. Unfinished tasks and plans for the future
+## F. Unfinished tasks and plans for the future
 
 - Pagination: It must be implemented for sure!
+- Django-hvad
+- Django-filter
+- Django-environ
 - Update `hybeta_doctor.available_time`, create `hybeta_doctor.doctor_scheduled_time` to handle it.
 - Expose API to retrieve doctor service(category)
 - Return log_id in the response header if status_code = 500
@@ -433,9 +420,5 @@ curl --location --request POST 'http://127.0.0.1:8000/doctor/' \
   - Implement Queue to handle it
   - Implement Parallel Processing to decrease process time
 - Accept to consume & return response in XML instead of only JSON
-
 - Build log system(Sentry, Kibana, Datadog)
 - Elasticsearch is also a nice tech to apply if we need to handle a more complex filter
-Production deployment:
-- Setup `pip install Django-environ`, keep env file on Production only, decouple it
-- Create something about the Multilingual model, make it common, and easy to apply multilingual for all model

@@ -1,7 +1,7 @@
 #!/bin/sh
 # git clone & activate virtual env
-git clone git@github.com:ngohoangyell/Hoang_Yell_Backend_Engineer_Technical_Assessment.git
-cd Hoang_Yell_Backend_Engineer_Technical_Assessment
+git clone git@github.com:ngohoangyell/Simple_Django_Project.git
+cd Simple_Django_Project
 python3 -m venv hybeta_env
 source hybeta_env/bin/activate
 # install python packages
